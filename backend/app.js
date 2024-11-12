@@ -1,10 +1,11 @@
 const express = require("express");
 const QR_Code = require("qrcode");
-const BodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -13,9 +14,11 @@ app.get('/', (req, res) => {
 
 app.get('/menu', (req, res) => {
     const menu = [
-        {id: 1, name: "Beef", price: 10.00},
-        {id: 2, name: "Chicken", price: 8.00},
-        {id: 3, name: "Pork", price: 6.00}
+        {id: 1, name: "Appetizers"},
+        {id: 2, name: "Proteins"},
+        {id: 3, name: "Beverages"},
+        {id: 3, name: "Desserts"}
+
     ];
     res.json(menu);
 });
@@ -37,7 +40,7 @@ app.post('/payment', (req, res) =>{
 });
 
 app.get('/generate-qr', (req, res) =>{
-    const url = 'http://localhost:3000/menu';
+    const url = 'http://localhost:3000';
     QR_Code.toDataURL(url, (err, src) =>{
         res.json({ qrCode: src});
     });
