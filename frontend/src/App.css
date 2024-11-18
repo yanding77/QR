@@ -1,4 +1,3 @@
-/* General Styling */
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif; /* Modern, elegant font */
@@ -6,7 +5,6 @@ body {
   color: #2a2a2a; /* Dark gray text for readability */
 }
 
-/* Header Styling */
 h1, h2 {
   color: #5c3d2e; /* Rich, dark brown color */
   text-align: left;
@@ -48,7 +46,7 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   margin-bottom: 20px;
-  text-align: left;
+  text-align: center;
   border-top: 5px solid #e4c9a6;
 }
 
@@ -96,7 +94,7 @@ h1 {
 
 /* Large Item Name Styling */
 .large-item-name {
-  font-size: 3.5rem; /* Large font for item names */
+  font-size: 2.5rem; /* Large font for item names */
   font-weight: 700;
   color: #5c3d2e;
   text-align: left;
@@ -170,32 +168,75 @@ h1 {
   font-size: 16px;
 }
 
-/* Cart Modal Overlay */
+/* Cart Overlay Background */
 .cart-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 46, 42, 0.9); /* Slightly transparent warm beige */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  z-index: 9999;
-  animation: slideUp 0.3s ease-out;
+  z-index: 1000;
 }
 
-/* Cart Content */
+/* Cart Content Styling */
 .cart-content {
-  background-color: #fff;
-  padding: 30px;
-  width: 80%;
-  max-width: 900px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff; /* White for a clean modal look */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  font-family: 'Arial', sans-serif; /* Match the font style of the page */
+  color: #000; /* Ensure readability */
 }
+
+/* Go Back Button */
+.go-back-button {
+  background-color: #f5ebd5; /* Match the beige tone */
+  color: #000; /* Dark text for contrast */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Add spacing between button and content */
+}
+
+.go-back-button:hover {
+  background-color: #e2d4b9; /* Darker beige for hover */
+}
+
+/* General Typography for Cart Content */
+.cart-content h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333; /* Subtle dark grey */
+}
+
+.cart-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.cart-content ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.cart-content li {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Payment Section (Optional Styling) */
+.cart-content .payment-section {
+  margin-top: 20px;
+}
+
 
 .cart {
   margin-bottom: 30px;
@@ -203,32 +244,7 @@ h1 {
   color: #5c3d2e;
 }
 
-/* Payment Section */
-.payment {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.payment button {
-  background-color: #e4c9a6;
-  color: white;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.payment button:hover {
-  background-color: #d4a36d;
-}
-
-/* Cart Button Animation */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -239,3 +255,5 @@ h1 {
     transform: translateY(0);
   }
 }
+
+

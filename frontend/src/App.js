@@ -13,6 +13,7 @@ function App() {
   const [showCart, setShowCart] = useState(false); 
   const menuItemsRef = useRef(null);
 
+  
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
 
@@ -52,7 +53,7 @@ function App() {
 
   return (
     <Container fluid className="App">
-      <h1 className="text-center my-4">QR Code Ordering App</h1>
+      <h1 className="text-center my-4">Yin's Restaurant</h1>
       <h2>Menu</h2>
       <Row>
         <Col xs={3} className="menu-categories">
@@ -62,11 +63,14 @@ function App() {
           />
         </Col>
         <Col xs={9} className="menu-items" ref={menuItemsRef}>
-          <MenuItems 
-            selectedCategory={selectedCategory} 
-            onAddToCart={handleAddToCart} 
-            onRemoveFromCart={handleRemoveFromCart}
-          />
+              <MenuItems 
+        selectedCategory={selectedCategory} 
+        onAddToCart={handleAddToCart} 
+        onRemoveFromCart={handleRemoveFromCart}
+        onCategoryChange={handleSelectCategory} 
+
+      />
+
         </Col>
       </Row>
 
@@ -92,6 +96,8 @@ function App() {
           </div>
         </div>
       )}
+      <h2> Thank you for Shopping</h2>
+
     </Container>
   );
 }

@@ -26,10 +26,20 @@ const Payment = ({ cartItems }) => {
     };
 
     return (
-        <div>
-            <h2>Order Now!</h2>
+        <div style={{
+            justifyContent: 'right',
+            alignItems: 'right',
+            textAlign: 'right' 
+        }}>           
             <p>Total Amount: ${paymentData.amount.toFixed(2)}</p>
-            <button onClick={handlePayment}>Pay</button>
+            <button 
+                style={{
+                    backgroundColor: 'green', 
+                    color: 'white', 
+                    border: 'none', 
+                    borderRadius: '5px', 
+                    cursor: 'pointer'}}
+                onClick={handlePayment}>Order Now!</button>
         </div>
     );
 }
