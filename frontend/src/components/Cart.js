@@ -1,19 +1,21 @@
 import React from 'react';
 
-function Cart({ cart }) {
+function Cart({ cart, onClearCart }) {
   return (
-    <div>      
-      <h2 style={{ textAlign: 'center' }}>Your Order</h2>
+    <div style={{ fontFamily: 'Georgia, serif', maxWidth: '500px', margin: '0 auto' }}>
+      <h2 style={{ textAlign: 'center', fontSize: '24px' }}>Tu Orden</h2>
       {cart.length === 0 ? (
-        <p>No items in your cart</p>
+        <p>Tu carrito está vacío</p>
       ) : (
-        <ul style={{ listStyleType: 'none'}}>
-          {cart.map((item, index) => (
-            <li key={index}>
-              {item.name} - ${item.price}
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul style={{ paddingLeft: '20px' }}>
+            {cart.map((item, index) => (
+              <li key={index} style={{ fontSize: '18px', marginBottom: '5px' }}>
+                {item.name} - ${item.price.toFixed(2)}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );

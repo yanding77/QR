@@ -1,53 +1,52 @@
 body {
-  margin: 0;
   font-family: 'Montserrat', sans-serif; /* Modern, elegant font */
   background-color: #f8f9f9; /* Light cream background for elegance */
   color: #2a2a2a; /* Dark gray text for readability */
-}
-
-h1, h2 {
-  color: #5c3d2e; /* Rich, dark brown color */
-  text-align: left;
-  margin-top: 20px;
-  font-size: 3rem; /* Larger text for titles */
-  font-weight: 700;
-  letter-spacing: 2px; /* Elegant spacing for title */
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 h1 {
-  position: sticky;
-  top: 0; 
-  background-color: #ffffff; /* White background for the header */
-  padding: 20px 0;
-  z-index: 1000;
+  background-image: url('./photos/kk.jpeg'); /* Path to the image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; 
+  background-repeat: no-repeat; /* Avoid repeating the image */  padding: 20px 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Elegant shadow */
   text-transform: uppercase;
-  border-bottom: 2px solid #e4c9a6; /* Light gold border */
+  border: 10px solid #e4c9a6; /* Light gold border */
+  border-radius: 10px;
 }
 
-/* Menu Categories - Left Column */
 .menu-categories {
-  background-color: #ffffff;
+  background-image: url('./photos/kk.jpeg'); /* Path to the image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; 
+  background-repeat: no-repeat; /* Avoid repeating the image */
   height: 80vh;
   overflow-y: auto;
-  padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-  border-radius: 12px; /* Rounded corners for a softer feel */
-  margin-bottom: 20px;
-  border-top: 5px solid #e4c9a6; /* Light gold top border */
+  border-radius: 10px; 
+  padding: 20px;
+  font-family: 'Lora', serif; 
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: flex-start; /* Align items to the top */
+  border: 5px solid #f8f9f9;
+  border-right: 2px solid #f8f9f9;
+
 }
 
-/* Menu Items - Right Column */
 .menu-items {
-  background-color: #ffffff;
+  background-color: rgb(3, 31, 36);
   padding: 20px;
   height: 80vh;
   overflow-y: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  margin-bottom: 20px;
-  text-align: center;
-  border-top: 5px solid #e4c9a6;
+  border-radius: 10px;
+  border: 5px solid #f8f9f9;
+  border-left: 2px solid #f8f9f9;
+
 }
 
 /* Category Button Styling */
@@ -56,15 +55,15 @@ h1 {
   padding: 15px;
   background-color: #f5ebd5; /* Warm, light beige background */
   border: none;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   border-radius: 10px;
   margin-bottom: 15px;
   transition: background-color 0.3s ease, transform 0.3s ease; 
   color: #5c3d2e;
-  font-weight: 500;
-  text-transform: capitalize;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .category-button:hover {
@@ -81,10 +80,14 @@ h1 {
 }
 
 /* Scrollbar Styling */
-.menu-categories::-webkit-scrollbar,
 .menu-items::-webkit-scrollbar {
   width: 8px;
 }
+.menu-categories::-webkit-scrollbar{
+  display: none; /* Hides the scrollbar */
+
+}
+
 
 .menu-categories::-webkit-scrollbar-thumb,
 .menu-items::-webkit-scrollbar-thumb {
@@ -92,49 +95,21 @@ h1 {
   border-radius: 10px;
 }
 
-/* Large Item Name Styling */
+
 .large-item-name {
   font-size: 2.5rem; /* Large font for item names */
-  font-weight: 700;
-  color: #5c3d2e;
+  font-weight: 800;
+  color: #f5ebd5;
   text-align: left;
+  padding: 10px;
   margin: 20px 0;
-  text-transform: uppercase;
   letter-spacing: 1.5px;
+  font-family: 'Lora', serif; /* Add an elegant serif font */
+  text-transform: uppercase;
 }
 
 
 
-/* Responsive Styles for Small Screens */
-@media (max-width: 767px) {
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .menu-categories,
-  .menu-items {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  .category-button {
-    padding: 18px;
-    font-size: 1.3rem;
-  }
-
-  h1, h2 {
-    font-size: 2.5rem;
-  }
-
-  .large-item-name {
-    font-size: 2.5rem;
-  }
-}
 
 /* Cart Button */
 .cart-button {
@@ -168,7 +143,6 @@ h1 {
   font-size: 16px;
 }
 
-/* Cart Overlay Background */
 .cart-overlay {
   position: fixed;
   top: 0;
@@ -190,7 +164,6 @@ h1 {
   width: 90%;
   max-width: 500px;
   padding: 20px;
-  font-family: 'Arial', sans-serif; /* Match the font style of the page */
   color: #000; /* Ensure readability */
 }
 
@@ -204,13 +177,14 @@ h1 {
   font-size: 15px;
   transition: background-color 0.3s ease;
   margin-bottom: 15px; /* Add spacing between button and content */
+  font-family: 'Lora', serif; /* Add an elegant serif font */
+
 }
 
 .go-back-button:hover {
   background-color: #e2d4b9; /* Darker beige for hover */
 }
 
-/* General Typography for Cart Content */
 .cart-content h2 {
   font-size: 24px;
   margin-bottom: 15px;
@@ -232,7 +206,6 @@ h1 {
   margin: 5px 0;
 }
 
-/* Payment Section (Optional Styling) */
 .cart-content .payment-section {
   margin-top: 20px;
 }
@@ -245,15 +218,75 @@ h1 {
 }
 
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+.background-title {
+  background-color: rgb(3, 31, 36);
+  padding: 20px; 
+  font-size: 3rem;  
+  font-weight: bold;  
+  color: #f5ebd5;
+  text-shadow: 
+    2px 2px 0px black,   
+    -2px -2px 0px black, 
+    2px -2px 0px black,  
+    -2px 2px 0px black;  
 }
 
+h1 img {
+  width: 100%;
+  max-height: 150px;
+  height: auto;
+  object-fit: cover;
+}
+
+
+
+@media (max-width: 480px) {  /* For mobile phones */
+  h1 {
+    padding: 5px ; /* Reduce padding */
+    height: 120px;
+    border: 5px solid #e4c9a6; /* Light gold border */
+
+  }
+  h1 img {
+    max-height: 100px;  /* Further reduce height for smaller phones */
+  }
+  .menu-categories, .menu-items {
+    align-items: center;
+    max-height: 70vh; /* Ensure full use of screen space */
+    padding: 1px;
+    overflow-x: hidden;
+    
+    
+  }
+
+  .category-button {
+    display: flex;             /* Use flexbox to center text */
+    justify-content: center; /* Center text horizontally */
+    align-items: center;    /* Center text vertically */
+    width: 78%; /* Full width without manual calculation */
+    text-align: center;
+    font-size: 1.1rem; /* Smaller font size */
+    padding: 8px;
+
+    margin: 15px auto; /* Less spacing */
+  }
+
+  .menu-categories ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    width: 100%; /* Ensure the container takes full width */
+
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+  }
+
+  .large-item-name {
+    font-size: 1rem; /* Smaller font size for mobile */
+    padding: 5px;
+    margin: 10px 0;
+  }
+
+}
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Payment = ({ cartItems }) => {
+const Payment = ({ cartItems, onClearCart }) => {
     const [paymentData, setPaymentData] = useState({ amount: 0, items: [] });
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const Payment = ({ cartItems }) => {
     }, [cartItems]);
 
     const handlePayment = () => {
-        fetch('http://localhost:5001/payment', {
+        fetch('http://192.168.120.104:5001/payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,19 +27,39 @@ const Payment = ({ cartItems }) => {
 
     return (
         <div style={{
-            justifyContent: 'right',
-            alignItems: 'right',
-            textAlign: 'right' 
-        }}>           
-            <p>Total Amount: ${paymentData.amount.toFixed(2)}</p>
-            <button 
-                style={{
-                    backgroundColor: 'green', 
-                    color: 'white', 
-                    border: 'none', 
-                    borderRadius: '5px', 
-                    cursor: 'pointer'}}
-                onClick={handlePayment}>Order Now!</button>
+            fontFamily: 'Lora, serif',
+            marginTop: '40px'
+        }}>
+            <div style={{
+                textAlign: 'right',  
+                marginBottom: '10px' 
+            }}>
+                <p>Valor a Pagar: ${paymentData.amount.toFixed(2)}</p>
+            </div>
+
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',  
+                alignItems: 'center'
+            }}>
+                <button 
+                    style={{
+                        backgroundColor: 'red', 
+                        color: 'white', 
+                        border: 'none', 
+                        borderRadius: '5px', 
+                        cursor: 'pointer'}}
+                    onClick={onClearCart}>Vaciar Carrito</button>
+
+                <button 
+                    style={{
+                        backgroundColor: 'green', 
+                        color: 'white', 
+                        border: 'none', 
+                        borderRadius: '5px', 
+                        cursor: 'pointer'}}
+                    onClick={handlePayment}>Pide Ahora!</button>
+            </div>
         </div>
     );
 }

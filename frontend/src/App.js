@@ -4,6 +4,7 @@ import MenuCategories from './components/MenuCategories';
 import MenuItems from './components/MenuItems';
 import Cart from './components/Cart';
 import Payment from './components/payment';
+import Footer from './components/footer';
 import QRCode from './components/QRCode';
 import './App.css';
 
@@ -40,8 +41,17 @@ function App() {
   };
 
   const handleRemoveFromCart = (itemToRemove) => {
-    setCart((prevCart) => prevCart.filter(item => item.name !== itemToRemove.name));
+    setCart((prevCart) => {
+      const index = prevCart.findIndex(item => item.name === itemToRemove.name); 
+      if (index !== -1) {
+        const updatedCart = [...prevCart];
+        updatedCart.splice(index, 1); 
+        return updatedCart;
+      }
+      return prevCart; 
+    });
   };
+  
 
   const handleCartButtonClick = () => {
     setShowCart(!showCart);
@@ -51,18 +61,28 @@ function App() {
     setShowCart(false);
   };
 
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
+
   return (
     <Container fluid className="App">
-      <h1 className="text-center my-4">Yin's Restaurant</h1>
-      <h2>Menu</h2>
-      <Row>
-        <Col xs={3} className="menu-categories">
-          <MenuCategories 
+      <h1>
+      <img 
+        src={require('./photos/title.jpeg')} 
+         alt="La Balsa" 
+         style={{ width: '100%',  objectFit: 'cover' }}/></h1>
+
+        <Row className="content-container">
+        <Col xs={4} md={3}className="menu-categories" >
+        <MenuCategories 
+          
             selectedCategory={selectedCategory}
             onSelectCategory={handleSelectCategory} 
           />
         </Col>
-        <Col xs={9} className="menu-items" ref={menuItemsRef}>
+        <Col xs={8} md={9} className="menu-items" ref={menuItemsRef}>
               <MenuItems 
         selectedCategory={selectedCategory} 
         onAddToCart={handleAddToCart} 
@@ -90,14 +110,13 @@ function App() {
       {showCart && (
         <div className="cart-overlay">
           <div className="cart-content">
-            <button className="go-back-button" onClick={handleGoBack}>Go Back</button>
-            <Cart cart={cart} onRemoveFromCart={handleRemoveFromCart} />
-            <Payment cartItems={cart} />
+            <button className="go-back-button" onClick={handleGoBack}>Regresar</button>
+            <Cart cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
+            <Payment cartItems={cart} onClearCart={handleClearCart}/>
           </div>
         </div>
       )}
-      <h2> Thank you for Shopping</h2>
-
+        <Footer/>
     </Container>
   );
 }
