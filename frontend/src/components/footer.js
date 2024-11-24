@@ -8,12 +8,28 @@ const Footer = () => {
         <a href="https://wa.me/your-number" style={styles.button} target="_blank" rel="noopener noreferrer">
           WhatsApp
         </a>
-        <a href="https://www.facebook.com/LaBalsa.ec/" style={styles.button} target="_blank" rel="noopener noreferrer">
+        <a
+          href="fb://page/LaBalsa.ec"
+          style={styles.button}
+          onClick={(e) => {
+            setTimeout(() => {
+              window.location.href = "https://www.facebook.com/LaBalsa.ec/";
+            }, 500); 
+          }}>
           Facebook
         </a>
-        <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/labalsa.ec/%3Fhl%3Des&ved=2ahUKEwjSobuRnOuJAxXAtokEHci7AV8QFnoECEMQAQ&usg=AOvVaw3SGhZbBvGAMoPlrVEMf-qi" style={styles.button} target="_blank" rel="noopener noreferrer">
+        <a
+          href="instagram://user?username=labalsa.ec"
+          style={styles.button}
+          onClick={(e) => {
+            setTimeout(() => {
+              window.location.href = "https://www.instagram.com/labalsa.ec/";
+            }, 500); 
+          }}
+        >
           Instagram
         </a>
+
       </div>
     </footer>
   );
