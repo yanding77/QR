@@ -2,11 +2,13 @@ const express = require("express");
 const QR_Code = require("qrcode");
 const cors = require("cors");
 const path = require('path');
+const { PrismaClient } = require('@prisma/client');
 
 const app = express();
+const prisma = new PrismaClient();
+
 const PORT = process.env.PORT || 5001;
 
-let OrderCount = 1432;
 
 
 app.use(cors());
@@ -137,19 +139,56 @@ app.get('/menu', (req, res) => {
 
 
 
-app.post('/payment', (req, res) =>{
+app.post('/payment', async (req, res) =>{
     const paymentData = req.body;
-    const OrderID = OrderCount++;
     const total = paymentData.items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    const orderCountRecord = await prisma.orderCount.findUnique({
+        where: {
+            id: 1, // Assuming there's only one row in the OrderCount table
+        }
+    });
+
+    if (!orderCountRecord) {
+        return res.status(500).json({ message: 'Order count not found' });
+    }
+
+    const OrderID = orderCountRecord.count;
+
+    const newOrder = await prisma.order.create({
+        data: {
+          orderId: OrderID,
+          items: JSON.stringify(paymentData.items), // Convert items array to JSON string
+          total: parseFloat(total),  // Store total as a float
+        }
+      });
+      await prisma.orderCount.update({
+        where: { id: 1 },
+        data: { count: { increment: 1 } }
+    });
     console.log(`Order (#${OrderID}) successful. Total: $${total}:`);
         paymentData.items.forEach(item => {
-        const { category, image, ...itemWithoutCategoryAndImage } = item;  
+        const { image, ...itemWithoutCategoryAndImage } = item;  
         console.log(itemWithoutCategoryAndImage);
 
     });    res.status(200).json({
         message: `Orden Exitosa! Orden #${OrderID}`,
     });
 });
+
+app.get('/order-count', async (req, res) => {
+    const orderCountRecord = await prisma.orderCount.findUnique({
+        where: {
+            id: 1, 
+        }
+    });
+
+    if (!orderCountRecord) {
+        return res.status(500).json({ message: 'Order count not found' });
+    }
+
+    res.json({ orderCount: orderCountRecord.count });
+});
+
 
 app.get('/generate-qr', (req, res) =>{
     const url = 'http://192.168.120.104:3000';
