@@ -1,11 +1,9 @@
-const express = requir('express');
 const escpos = require('escpos');
 const SerialPort = require('escpos-serialport');
-const {prisma} = require("./database")
 
 const router = express.Router();
 
-const device = new SerialPort('/'); 
+const device = new SerialPort('/'); //change this
 const printer = new escpos.Printer(device);
 
 const printBill = (billData) => {
@@ -39,15 +37,4 @@ const printBill = (billData) => {
     });
   };
   
-  app.post('/print-bill', (req, res) => {
-    const billData = req.body;
-  
-    try {
-      printBill(billData);
-      res.status(200).json({ message: 'Bill sent to printer successfully.' });
-    } catch (error) {
-      console.error('Error printing bill:', error);
-      res.status(500).json({ message: 'Failed to print the bill.' });
-    }
-  });
-  
+  module.exports = { printBill };

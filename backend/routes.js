@@ -1,10 +1,11 @@
 const express = require("express");
 const QR_Code = require("qrcode");
 const { prisma, getOrderCount, incrementOrderCount, createOrder } = require("./database");
+const { printBill } = require('./pos'); 
+
 
 const router = express.Router();
 
-// Categories route
 router.get('/categories', (req, res) => {
     const categories = [
         "Entradas", "Ceviches", "Caldos y Sopas", "Platos Tipicos", "Banderas", "Sanduches",
@@ -13,7 +14,6 @@ router.get('/categories', (req, res) => {
     res.json(categories);
 });
 
-// Menu route
 router.get('/menu', (req, res) => {
     const menu = [
                 // Entrees
@@ -123,7 +123,6 @@ router.get('/menu', (req, res) => {
     res.json(menu);
 });
 
-// Payment route
 router.post('/payment', async (req, res) => {
     const paymentData = req.body;
     const total = paymentData.items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
@@ -137,7 +136,14 @@ router.post('/payment', async (req, res) => {
         paymentData.items.forEach(({ image, ...itemWithoutCategoryAndImage }) => {
             console.log(itemWithoutCategoryAndImage);
         });
-
+        /*
+        printBill({
+            orderId: orderCount,
+            items: paymentData.items,
+            total: parseFloat(total),
+        });
+        */
+    
         res.status(200).json({
             message: `Orden Exitosa! Orden #${orderCount}`,
         });
