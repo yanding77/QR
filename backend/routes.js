@@ -1,7 +1,7 @@
 const express = require("express");
 const QR_Code = require("qrcode");
 const { prisma, getOrderCount, incrementOrderCount, createOrder } = require("./database");
-const { printBill } = require('./pos'); 
+//const { printBill } = require('./pos'); 
 
 
 const router = express.Router();
